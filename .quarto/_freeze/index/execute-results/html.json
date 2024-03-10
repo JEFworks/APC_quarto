@@ -1,0 +1,17 @@
+{
+  "hash": "29d05e83578e97361b6a02246d6bd2ad",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Exploring APC Charges\"\nauthor: \"Jean Fan\"\ndate: \"3/10/2024\"\nformat: \n  html:\n    fig-width: 8\n    fig-height: 4\n    code-fold: true\n---\n\n\nRead data\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndata = read.csv('data/APCs.csv')\nhead(data)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  sourceid.year.oa source_id                    source_title\n1   6582_2018_gold      6582                Diabetes Therapy\n2   6582_2017_gold      6582                Diabetes Therapy\n3   6436_2017_gold      6436         Dermatology and Therapy\n4   6436_2018_gold      6436         Dermatology and Therapy\n5  10898_2017_gold     10898 Infectious Diseases and Therapy\n6  10898_2018_gold     10898 Infectious Diseases and Therapy\n                     journal_name issn_print    issn_e parent_publisher\n1                Diabetes Therapy  1869-6953 1869-6961  Springer-Nature\n2                Diabetes Therapy  1869-6953 1869-6961  Springer-Nature\n3         Dermatology and Therapy  2193-8210 2190-9172  Springer-Nature\n4         Dermatology and Therapy  2193-8210 2190-9172  Springer-Nature\n5 Infectious Diseases and Therapy  2193-8229 2193-6382  Springer-Nature\n6 Infectious Diseases and Therapy  2193-8229 2193-6382  Springer-Nature\n  oa_status pub_year n_doi apc_lower_total   apc_.lower apc_lower_source\n1      gold     2018   178         1066560 480 per page Matthias: actual\n2      gold     2017   107          595760 440 per page Matthias: actual\n3      gold     2017    51          224200 380 per page Matthias: actual\n4      gold     2018    58          239020 380 per page Matthias: actual\n5      gold     2017    37          192280 380 per page Matthias: actual\n6      gold     2018    38          204820 380 per page Matthias: actual\n  apc_upper_total   apc_.upper apc_upper_source\n1         1066560 480 per page Matthias: actual\n2          595760 440 per page Matthias: actual\n3          224200 380 per page Matthias: actual\n4          239020 380 per page Matthias: actual\n5          192280 380 per page Matthias: actual\n6          204820 380 per page Matthias: actual\n                             notes\n1 total pages for 177 papers: 2222\n2 total pages for 107 papers: 1354\n3   total pages for 51 papers: 590\n4   total pages for 58 papers: 629\n5   total pages for 37 papers: 506\n6   total pages for 38 papers: 539\n```\n\n\n:::\n:::\n\n\nClean data\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndata$apc_.lower = as.numeric(data$apc_.lower)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: NAs introduced by coercion\n```\n\n\n:::\n\n```{.r .cell-code}\ndata$apc_.upper = as.numeric(data$apc_.upper)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: NAs introduced by coercion\n```\n\n\n:::\n:::\n\n\nPlot\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nggplot(data) + geom_violin(aes(parent_publisher, apc_.lower, fill=parent_publisher))\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\nWarning: Removed 15 rows containing non-finite values (`stat_ydensity()`).\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=768}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,175 @@
+---
+title: "Annual Article Processing Charges (APCs) and number of gold and hybrid open access articles in Web of Science indexed journals published by Elsevier, Sage, Springer-Nature, Taylor & Francis and Wiley 2015-2018"
+author: "Jean Fan"
+date: "3/10/2024"
+format: 
+  html:
+    code-fold: true
+---
+
+---
+
+I use [Quarto](https://quarto.org/) to build interactive data visualizations with [Observable JS](https://quarto.org/docs/interactive/ojs/ojs-cells.html) using data from [Butler, L.-A., Matthias, L., Simard, M.-A., Mongeon, P., & Haustein, S. (2023). The Oligopoly's Shift to Open Access. How the Big Five Academic Publishers Profit from Article Processing Charges. Quantitative Science Studies](https://direct.mit.edu/qss/article/4/4/778/118070/The-oligopoly-s-shift-to-open-access-How-the-big). 
+
+Data from the original publication was downloaded from [Zenodo](https://zenodo.org/records/7086420). Non-numeric values such as '$480 per page' in the `apc_lower` column were removed for ease of interpretability and data visualization. Consult the [`ReadMe.csv`](https://zenodo.org/records/7086420) for more descriptions and notes of the variables. 
+
+---
+
+# APCs
+
+APCs.csv: contains the annual APCs for gold and hybrid OA journals indexed in Web of Science published by the oligopoly of academic publishers (Elsevier, Sage, Springer-Nature, Taylor & Francis, Wiley) between 2015 and 2018 including the total estimate of APCs paid per journal per year.
+
+```{ojs}
+// read in data 
+data = FileAttachment("data/APCs.csv").csv({ typed: true })
+colnames = Object.keys(data[0])
+// make dropdowns
+viewof feature = Inputs.select(
+  colnames,
+  {value: "parent_publisher"}
+)
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Lower estimate of APC
+```{ojs}
+// render plot
+Plot.plot({
+  grid: true,
+  width: 500,
+  height: 300,
+  marks: [
+    Plot.frame(),
+    Plot.boxY(data, {
+    y: 'apc_lower',
+    x: feature
+    }),
+    Plot.dot(data, {
+    y: 'apc_lower',
+    x: feature,
+    tip: true,
+    channels: {
+      journal: 'journal_name'
+    }
+    })
+  ]
+})
+```
+
+:::
+
+::: {.column width="50%"}
+
+### Upper estimate of APC
+```{ojs}
+// render plot
+Plot.plot({
+  grid: true,
+  width: 500,
+  height: 300,
+  marks: [
+    Plot.frame(),
+    Plot.boxY(data, {
+    y: 'apc_upper',
+    x: feature
+    }),
+    Plot.dot(data, {
+    y: 'apc_upper',
+    x: feature,
+    tip: true,
+    channels: {
+      journal: 'journal_name'
+    }
+    })
+  ]
+})
+```
+
+:::
+
+::::
+
+---
+
+# OECD
+
+oecd.csv: contains the fractionalized number of annual gold and hybrid OA articles by oligopoly publishers between 2015 and 2018 and the total estimate of fractionalized APCs per discipline per journal per year.
+
+```{ojs}
+// read in data 
+data2 = FileAttachment("data/oecd.csv").csv({ typed: true })
+colnames2 = Object.keys(data2[0])
+// make dropdowns
+viewof feature2x = Inputs.select(
+  colnames2,
+  {value: "apc_total"}
+)
+viewof feature2y = Inputs.select(
+  colnames2,
+  {value: "parent_publisher"}
+)
+// render plot
+Plot.plot({
+  grid: true,
+  marginRight: 200,
+  marginLeft: 200,
+  width: 800,
+  height: 600,
+  marks: [
+    Plot.frame(),
+    Plot.dot(data2, {
+    x: feature2x,
+    y: feature2y, 
+    fy: 'oecd_major',
+    tip: true,
+    channels: {
+      journal: 'journal_name'
+    }
+    })
+  ]
+})
+```
+
+---
+
+# Countries
+
+countries.csv: contains the fractionalized number of annual gold and hybrid OA articles by oligopoly publishers between 2015 and 2018 and the total estimate of fractionalized APCs paid per country per journal per year.
+
+```{ojs}
+// read in data 
+data3 = FileAttachment("data/countries.csv").csv({ typed: true })
+colnames3 = Object.keys(data3[0])
+// make dropdowns
+viewof feature3x = Inputs.select(
+  colnames3,
+  {value: "apc_total"}
+)
+viewof feature3y = Inputs.select(
+  colnames3,
+  {value: "parent_publisher"}
+)
+// render plot
+Plot.plot({
+  grid: true,
+  marginRight: 200,
+  marginLeft: 200,
+  width: 800,
+  height: 10000,
+  marks: [
+    Plot.frame(),
+    Plot.dot(data3, {
+    x: feature3x,
+    y: feature3y, 
+    fy: 'country',
+    tip: true,
+    channels: {
+      journal: 'journal_name'
+    }
+    })
+  ]
+})
+```

@@ -1,0 +1,49 @@
+﻿Please cite this dataset as:,
+"Butler, L.-A., Matthias, L., Simard, M.-A., Mongeon, P., & Haustein, S. (2022). Annual article processing charges (APCs) and number of gold and hybrid open access articles in Web of Science-indexed journals published by Elsevier, Sage, Springer-Nature, Taylor & Francis and Wiley 2015-2018. Dataset. https://doi.org/10.5281/zenodo.7086420",
+,
+Detailed methods of how APCs were collected can be found in the following preprint:,
+"Butler, L.-A., Matthias, L., Simard, M.-A., Mongeon, P., & Haustein, S. (2022). The Oligopoly's Shift to Open Access. How For-Profit Publishers Benefit from Article Processing Charges. Preprint. https://doi.org/10.5281/zenodo.7057144",
+,
+"APCs.csv: contains the annual APCs for gold and hybrid OA journals indexed in Web of Science published by the oligopoly of academic publishers (Elsevier, Sage, Springer-Nature, Taylor & Francis, Wiley) between 2015 and 2018 including the total estimate of APCs paid per journal per year.",
+Variable in APCs.csv,Description
+sourceid-year-oa,Unique idenifier for each journal-year-OA status combination
+source_id,Internal journal identifier
+source_title,Journal name
+journal_name,Journal name (alternative spelling)
+issn_print,Journal ISSN print version
+issn_e,Journal ISSN electronic version
+parent_publisher,"Publishing company that publishes the journal. Imprints and subsidiary publishers were assigned to parent oligopoly publisher Elsevier, Sage, Springer-Nature, Taylor & Francis or Wiley."
+oa_status,Publisher OA status (gold or hybrid OA) according to Unpaywall April 2022 dataset
+pub_year,Publication year
+n_doi,"Number of publications with a DOI per journal, year and OA status"
+apc_lower_total,"Total amount of lower estimate of APCs per journal, year and OA status"
+apc_ lower,Lower estimate of APC for this journal and year
+apc_lower_source,Datasource for determining lower estimate of APC for this journal and year
+apc_upper_total,"Total amount of upper estimate of APCs per journal, year and OA status"
+apc_ upper,Upper estimate of APC for this journal and year
+apc_upper_source,Datasource for determining upper estimate of APC for this journal and year
+notes,Additional information about retrieving APC
+,
+countries.csv: contains the fractionalized number of annual gold and hybrid OA articles by oligopoly publishers between 2015 and 2018 and the total estimate of fractionalized APCs paid per country per journal per year.,
+Variable in countries.csv,Description
+sourceid-year-oa,Unique idenifier for each journal-year-OA status combination
+source_id,Internal journal identifier
+parent_publisher,"Publishing company that publishes the journal. Imprints and subsidiary publishers were assigned to parent oligopoly publisher Elsevier, Sage, Springer-Nature, Taylor & Francis or Wiley."
+pub_year,Publication year
+oa_status,Publisher OA status (gold or hybrid OA) according to Unpaywall April 2022 dataset
+country,Country extracted from addresses of author affiliations
+n_dois,"Number of fractionalized publications per country, journal, year and OA status. Publications were fractionalized according to co-authors. For example, if a paper was published by one author from Canada and one author from Germany, 0.5 publications were assigned to each country."
+apc_lower,Lower estimate of APC for this journal and year
+apc_total,"Total fractionalized amount of lower estimate of APCs per country, journal, year and OA status"
+,
+oecd.csv: contains the fractionalized number of annual gold and hybrid OA articles by oligopoly publishers between 2015 and 2018 and the total estimate of fractionalized APCs per discipline per journal per year.,
+Variable in oecd.csv,Description
+sourceid-year-oa,Unique idenifier for each journal-year-OA status combination
+source_id,Internal journal identifier
+parent_publisher,"Publishing company that publishes the journal. Imprints and subsidiary publishers were assigned to parent oligopoly publisher Elsevier, Sage, Springer-Nature, Taylor & Francis or Wiley."
+pub_year,Publication year
+oa_status,Publisher OA status (gold or hybrid OA) according to Unpaywall April 2022 dataset
+oecd_major,Major discipline for journal-level classification based on the OECD Fields of Science and Technology (FOS) Classification in the Frascati Manual
+n_dois,"Number of fractionalized publications per country, journal, year and OA status. Publications were fractionalized according to co-authors. For example, if a paper was published by one author from Canada and one author from Germany, 0.5 publications were assigned to each country."
+apc_lower,Lower estimate of APC for this journal and year
+apc_total,"Total fractionalized amount of lower estimate of APCs per country, journal, year and OA status"
