@@ -120,6 +120,11 @@ Plot.plot({
   height: 600,
   marks: [
     Plot.frame(),
+    Plot.boxX(data2, {
+    x: feature2x,
+    y: feature2y, 
+    fy: 'oecd_major'
+    }),
     Plot.dot(data2, {
     x: feature2x,
     y: feature2y, 
@@ -161,6 +166,11 @@ Plot.plot({
   height: 10000,
   marks: [
     Plot.frame(),
+    Plot.boxX(data3, {
+    x: feature3x,
+    y: feature3y, 
+    fy: 'country',
+    }),
     Plot.dot(data3, {
     x: feature3x,
     y: feature3y, 
